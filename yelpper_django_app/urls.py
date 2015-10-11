@@ -19,4 +19,6 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index')
+	#url(r'^post/request_upload$', 'views.request', name='post_request')
+    #url(r'^request/$', views.request, name='request')
 ]
