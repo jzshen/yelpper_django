@@ -5,8 +5,8 @@ from django.template import Context, loader, Template
 
 from django.http import HttpResponse
 from yelpper_django_app.request import RequestForm
-from geocoder import getStreetAddress, getMealTime
-from yelp import getRestaurant, getLat, getLong, query_api
+from geocoder import getAddress, getMealTime
+from yelp import getRestaurant, getRestaurantLat, getRestaurantLon, query_api
 
 def index(request):
 	t = Template("my name is {{ my_name }}")
@@ -24,8 +24,7 @@ def request(request):
         	distance = form.cleaned_data['distance']
     		prices = form.cleaned_data['prices']
     		uberType = form.cleaned_data['sender']
-    		#implementation
-   			yelpperImp(disntace, prices, uberType)
+    		yelpperImp(disntace, prices, uberType)
 	else:
 		form = RequestForm() # An unbound form
 

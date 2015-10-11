@@ -8,7 +8,7 @@ import json
 #def geoCoder(lat, lon)
 
 
-def getAddresss(lat, lon):
+def getAddress(lat, lon):
     url = "http://maps.googleapis.com/maps/api/geocode/json?"
     url += "latlng=%s,%s&sensor=false" % (lat, lon)
     v = urlopen(url).read()
@@ -48,4 +48,4 @@ def getMealTime():
         return "dinner"
     
 
-getAddresss(37.8755449, -122.25893279999998)
+#getAddress(37.8755449, -122.25893279999998)
