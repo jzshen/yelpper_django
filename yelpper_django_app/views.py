@@ -5,6 +5,8 @@ from django.template import Context, loader, Template
 
 from django.http import HttpResponse
 from yelpper_django_app.request import RequestForm
+from geocoder import getStreetAddress, getMealTime
+from yelp import getRestaurant, getLat, getLong, query_api
 
 def index(request):
 	t = Template("my name is {{ my_name }}")
@@ -19,15 +21,30 @@ def request(request):
 	elif request.method == 'POST': # If the form has been submitted...
 		form = ReqestForm(request.POST) # A form bound to the POST data
         if form.is_valid(): # All validation rules pass
-        	distance = form.cleaned_data['distance'] 
+        	distance = form.cleaned_data['distance']
     		prices = form.cleaned_data['prices']
     		uberType = form.cleaned_data['sender']
+    		#implementation
+   			yelpperImp(disntace, prices, uberType)
 	else:
 		form = RequestForm() # An unbound form
 
 	return render(request, 'index.html', {
         'form': form
     })
+
+def yelpperImpl(distance, prices, uberType):
+	currentLat #taken from JS
+	currentLon #taken from JS
+	addressArray = getAddress(currentLat, currentLon) #[street address, city, state]
+	mealTime = getMealTime()
+	restaurantData  = query_api(mealTime, getRestaurant(addressArray[0])) #should be private
+	restaurant = getRestaurant(restaurantData)		#name
+	restaurantLat = getRestaurantLat(restaurantData)#lat
+	restaurantLon = getRestaurantLon(restaurantData)#long
+	uberImpl( )#tbc muhommad
+
+
 
 
 
